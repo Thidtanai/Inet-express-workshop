@@ -76,3 +76,31 @@ exports.approveUser = async (req, res, next) => {
     });
   }
 };
+
+// delete user
+exports.deleteUser = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { authRole } = getAuthData(req, res);
+
+    if (authRole !== "admin") {
+      return res.status(401).send({
+        message: "You are not admin",
+        success: false,
+      });
+    }
+
+    await userSchema.findByIdAndDelete(id);
+    let user = await userSchema.find();
+    return res.status(200).send({
+      data: user,
+      message: "Delete user complete",
+      success: true,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "Delete user fail",
+      success: false,
+    });
+  }
+};
