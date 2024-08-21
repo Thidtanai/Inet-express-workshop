@@ -15,6 +15,17 @@ const products = new mongoose.Schema(
       type: Number,
       required: [true, "Product price is required"],
     },
+    product_owner: {
+      type: String,
+      required: [true, "Product need owner"],
+      default: "66bb835365ada094def4675a",
+    },
+    product_description:{
+      type: String,
+    },
+    product_img: {
+      type: String,
+    },
     order_id: [String],
   },
   {

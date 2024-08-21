@@ -6,6 +6,7 @@ const orders = new mongoose.Schema(
     order_price: { type: Number, required: [true, "Order price is required"] },
     order_status: { type: String },
     product_id: [String],
+    product_img: { type: String },
     orderby: { type: String, required: [true, "Order user id is required"] },
   },
   {
