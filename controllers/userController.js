@@ -21,6 +21,23 @@ exports.getAllUser = async (req, res, next) => {
   }
 };
 
+// get not approve user
+exports.approveList = async (req, res, next) => {
+  try {
+    const unapproveUesrs = await userSchema.find({ is_approve: false });
+    return res.status(200).send({
+      data: unapproveUesrs,
+      message: "Get unapprove users success",
+      success: true,
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: error.message || "Get user fail",
+      success: false,
+    });
+  }
+};
+
 // create user
 exports.createUser = async (req, res, next) => {
   try {
